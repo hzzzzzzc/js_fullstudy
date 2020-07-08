@@ -1,0 +1,119 @@
+body{
+    margin: 0;
+    /*position: relative;*/
+    font-size: 0;
+}
+.container{
+    position: relative;
+    background-color: #5aabb6;
+    top: 50px;
+    left: 0;
+    width: 270px;
+    height: 300px;
+}
+.content{
+    width: 200px;
+    height: 250px;
+    top: 0;
+    left: 0;
+    position: absolute;
+    background-color: rgb(7, 105, 105);
+}
+.leaf{
+    border-radius: 50%;
+    background-color: #7cfabc;
+    position: absolute;
+}
+.leaf-1{
+    box-shadow: inset -10px 0 14px 0 #1dcd59;
+    width: 100px;
+    height: 100px;
+    z-index: 3;
+    top: 50px;
+    left:50px;
+}
+.leaf-2{
+    width: 95px;
+    height: 95px;
+    top:35px;
+    left:40px;
+    box-shadow: inset 8px 0 10px 0 #1dcd59;
+    z-index: 2;
+}
+.leaf-3{
+    width: 75px;
+    height: 75px;
+    top: 75px;
+    left: 20px;
+    box-shadow: inset 5px 0 7px 0 #1dcd59;
+    z-index: 1;
+}
+.trunk{
+    position: absolute;
+    background-color: #987c66;
+    box-shadow: inset -5px 0 2px 0 black;
+}
+.trunk-1{
+    bottom:0;
+    left: 80px;
+    transform: rotate(-2deg);
+    width: 20px;
+    height: 120px;
+}
+.trunk-2{
+    bottom: 70px;
+    left: 75px;
+    transform: rotate(-30deg);
+    width: 6px;
+    height: 34px;
+}
+.trunk-3{
+    bottom: 72px;
+    left: 100px;    
+    transform: rotate(30deg);
+    width: 7px;
+    height: 36px; 
+}
+.barrel{
+    background-color: #c37230;
+    width: 36px;
+    height: 60px;
+    position: absolute;
+    right: 20px;
+    bottom: 0;
+    border-radius: 15%;
+}
+.box{
+    right:3px;
+    border-radius: 30%;
+    width: 30px;
+    height: 15px;
+    position: absolute;
+}
+.box-1{
+    background-color: black;
+    bottom: 40px;
+    z-index: 2;
+}
+.box-2{
+    background-color: #ee9052;
+    bottom: 35px;
+}
+.grass-1{
+background-color: #58d25b;
+width: 200px;
+height: 40px;
+bottom: 0;
+position: absolute;
+z-index: -1;
+}
+.grass-2{
+    background-color: #61c968;
+    box-shadow: inset 0 10px 0 0 #14883b;
+    border-radius: 10%;
+    position: absolute;
+    bottom: 5px;
+    left: 0;
+    width: 250px;
+    height: 45px;
+}
