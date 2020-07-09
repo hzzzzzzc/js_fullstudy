@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var a={};                     
+    var person = {
+        age: 18,
+        nation: "hanzu",
+        "xing ming": "hanjinglong",   //若属性名是非法字符串或保留字时，必须用引号括住
+        "first-name": "dasima",       
+        family: {                     //对象是可嵌套的
+            mother: "xxx",
+            father: "yyy"
+        }
+    };
+
+       person.family.mother = "zzz";
+       person.ma = "king";
+       var stooge = {};
+var x = stooge;
+x.nickname = 'Curly';
+var nick = stooge.nickname;  // x 和stooge 指向同一个对象的引用， nick 为 'Curly'
+var a = {}, b = {} ,c = {};
+// a, b, c 每个都引用一个不同的空对象
+var a = b = c = {};
+// a, b, c 都引用同一个空对象 a.name = 'xiaoming' ==> b.name === 'xiaoming'
+
+    </script>
+</body>
+</html>
