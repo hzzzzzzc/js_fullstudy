@@ -1,0 +1,45 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+html {
+  background-color: #f5f5f5;
+  color: #333;
+  font-style: 32px;
+}
+body {
+  min-width: 320px;
+  max-width: 540px;
+  padding-top: 44px;
+  margin: 0 auto;
+  font-style: 16px;
+}
+.header-wrapper {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 2;
+}
+.header {
+  height: 44px;
+  line-height: 44px;
+  min-width: 240px;
+  background-color: #1ba9ba;
+  color: #fff f;
+  font-size: 18px;
+  text-align: center;
+  position: relative;
+  padding: 0 15px;
+}
+.header-back {
+  position: absolute;
+  left: 0;
+  width: 42px;
+  height: 42px;
+}
+.header-title {
+  /* max-width: 216px; */
+  font-size: 100%;
+  margin: 0;
+}
