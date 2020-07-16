@@ -49,3 +49,25 @@
     top: 423px;
     left: 343px;
   }
+  
+  #score{
+      position: absolute;
+      display: none;
+      left: 150px;
+      top: 60px;
+      width: 60px;
+      height: 35px;
+      z-index: 3;
+  }
+  #scoreImg1{
+      display: inline-block;
+      width: 30px;
+      height: 35px;
+  }
+  #scoreImg2 {
+      float: right;
+      background-image: url(../img/0.jpg);
+      width: 30px;
+      height: 35px;
+
+  }
