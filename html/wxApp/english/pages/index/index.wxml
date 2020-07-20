@@ -1,0 +1,34 @@
+<!-- <map
+ id="map"
+ longitude="115.837824"
+ latitude="28.722564"
+ show-location
+ style="width: 100%; height: 61.5vh;"
+ markers="{{markers}}"
+></map>
+ -->
+
+<loading hidden="{{isHidden}}">加载中</loading>
+<view
+ class="wrapper"
+ wx:for="{{articleList}}"
+ wx:for-item="group"
+>
+	<view class="group-bar">
+		<view class="group-title">{{group-date}}</view>
+	</view>
+	<view class="group-content">
+		<view
+		 class="group-content-item"
+		 wx:for="{{group.articles}}"
+		 wx:for-item="article"
+		>
+			<view class="group-content-item-desc">{{article.title}}</view>
+			<image src="{{item.pic}}">
+
+			</image>
+		</view>
+	</view>
+
+</view>
+

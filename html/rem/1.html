@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+   <!--  <meta name="viewport" content="width=device-width, initial-scale=0.5"> -->
+    <title>Document</title>
+    <link rel="stylesheet" href="1.css">
+        <script>
+        var ratio = 1 / window.devicePixelRatio
+        var meta = document.createElement('meta')
+        meta.name = 'viewport'
+        meta.content = 'initial-scale=' +  ratio
+        var head = document.querySelector('head')
+        head.appendChild(meta)
+        
+        const width = window.innerWidth  / 10    // 屏幕等分成10份 即 1rem = 屏幕 / 10
+        const html = document.querySelector('html')
+        //每一份就是 1rem  (因为 font-size 就是1rem)
+        html.style.fontSize = width + 'px'  // 1rem = html的font-size
+    </script>
+    <style>
+        html {
+            /* (通过媒体查询)不同的设备上调整html的font-size 以此来改变全局*/
+            /*调整多少呢 : 结合设计稿*/
+            /*设备物理像素 / 逻辑像素  = DPR */
+            margin: 0;  
+            font-size: 20px;
+        }
+        div {
+            font-size: 30px;
+            /*
+            px是一个死的单位 60ox:无论在哪个设备，都是死的值
+            */
+            width: 3em;   /*3rem = 20 x 3 px ???为什么这样搞？*/
+            height: 3rem;
+            background-color: green;
+            display: none;
+        }
+    </style>
+
+</head>
+<body>
+<input type="text">
+</body>
+</html>
