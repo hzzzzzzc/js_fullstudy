@@ -1,14 +1,25 @@
-<!-- <map
+<map
  id="map"
  longitude="115.837824"
  latitude="28.722564"
  show-location
- style="width: 100%; height: 61.5vh;"
+ style="width: 100%; height: 100vh;"
  markers="{{markers}}"
 ></map>
- -->
 
-<loading hidden="{{isHidden}}">加载中</loading>
+<cover-view class="map-search">
+	<button>搜索目的地停车点</button>
+</cover-view>
+
+<cover-view class="type-change">
+	<cover-view class="car-place"></cover-view>
+	<cover-view class="parking-place"></cover-view>
+</cover-view>
+
+<cover-view class="location"></cover-view>
+<cover-view class="aid"></cover-view>
+
+<!-- <loading hidden="{{isHidden}}">加载中</loading>
 <view
  class="wrapper"
  wx:for="{{articleList}}"
@@ -30,5 +41,5 @@
 		</view>
 	</view>
 
-</view>
+</view> -->
 
