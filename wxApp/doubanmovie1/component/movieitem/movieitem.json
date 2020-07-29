@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    
+    "ratingStar" :"/component/ratingStar/ratingStar"
+  }
+}
