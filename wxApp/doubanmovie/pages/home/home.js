@@ -5,6 +5,33 @@ Page({
    * 页面的初始数据
    */
   data: {
+    allMovies:[
+      {
+        title: "院线热映",
+        url: "/v2/movie/in_theaters",
+        movies: []
+      },
+      {
+        title: "新片榜",
+        url: "/v2/movie/new_movies",
+        movies: []
+      },
+      {
+        title: "口碑榜",
+        url: "/v2/movie/weekly",
+        movies: []
+      },
+      {
+        title: "北美票房榜",
+        url: "/v2/movie/us_box",
+        movies: []
+      },
+      {
+        title: "Top250",
+        url: "/v2/movie/top250",
+        movies: []
+      },
+    ]
  
   },
  
@@ -17,16 +44,35 @@ Page({
    })
   },
  
-  loadData(idx,parans){
-    let url = wx.db.url('/v2/movie/in_theaters')
-   wx.request({
-     url:url,
-     data:parans,
-     header:{'content-type':'json'},
-     success:(res)=>{
-       console.log(res);
-     }
-   })
+  loadData(idx, params) {
+    console.log(params)
+    let obj = this.data.allMovies[idx]
+    let url = wx.db.url(obj.url)
+    wx.request({
+      url: url,
+      data: params,
+      header: {'content-type': 'json'},
+      success: (res) => {
+        console.log(res)
+        let movies = res.data.subjects
+        // let obj = this.data.allMovies[idx]
+        obj.movies = []
+        for (let index = 0; index < movies.length; index++) {
+          let element = movies[index]
+          let movie = element.subject || element
+          // 格式化星星
+          this.updateMovie(movie)
+          obj.movies.push(movie)
+        }
+        this.setData(this.data)
+      }
+    })
+  },
+  updateMovie(movie) {
+    if (!movie.rating.stars) {
+        return
+    }
+    movie.numberStars = parseInt(movie.rating.stars)
   },
  
   getCity(succeed){

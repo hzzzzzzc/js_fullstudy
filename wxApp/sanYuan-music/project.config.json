@@ -27,13 +27,13 @@
 			"outputPath": ""
 		},
 		"useIsolateContext": true,
-		"useCompilerModule": false,
+		"useCompilerModule": true,
 		"userConfirmedUseCompilerModuleSwitch": false
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.12.0",
 	"appid": "wx35734cc5ff3ed4ee",
-	"projectname": "doubanMovie",
+	"projectname": "sanYuan-music",
 	"debugOptions": {
 		"hidedInDevtools": []
 	},
