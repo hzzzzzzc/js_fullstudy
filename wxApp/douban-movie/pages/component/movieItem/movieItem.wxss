@@ -1,0 +1,29 @@
+.item{
+  display: inline-flex;
+  margin-left: 20rpx;
+}
+.item .info{
+  display: flex;
+  flex-direction: column;/*竖直方向的弹性*/
+}
+.name{
+  font-size: 32rpx;
+  font-weight: bold;
+  max-width: 200rpx;
+  white-space: nowrap;/*不换行*/
+  overflow: hidden;
+  text-overflow: ellipsis;/*超出打点*/
+}
+.img{
+  width: 201rpx;
+  height: 280rpx;
+  margin-bottom: 20rpx;
+  border-radius: 10rpx;
+}
+.score-wrapper{
+  display: inline-flex;
+}
+.score{
+  margin-left: 5px;
+  font-size: 16px;
+}
