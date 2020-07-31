@@ -9,6 +9,14 @@
 
 // console.log(pat.exec(str))
 
-let str = "sadas sa djosd xujoias"
-let pat = /sadas|xujoias/g
-console.log(str.match(pat))
+// let str = "sadas sa djosd xujoias"
+// let pat = /sadas|xujoias/g
+// console.log(str.match(pat))
+
+// let str = "That's hot!"
+// let pat = /h.t/g
+// let pat = /\w/g
+
+
+
+let pat = /(\S)+[@]{1}(\S)+[.]{1}(\w)+/

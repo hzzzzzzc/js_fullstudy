@@ -90,7 +90,7 @@ Page({
  getCity(succeed){
   wx.getLocation({
     success: (res)=>{
-      console.log(res);
+    //  console.log(res);
       //往百度地图传当前的地理位置，然后它会返回给我信息
       wx.request({
         url: 'https://api.map.baidu.com/reverse_geocoding/v3',
