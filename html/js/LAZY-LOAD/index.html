@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+     <img class="image-item" lazyload="true" data-original="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1596604398480&di=727adceb002e59d1391c141564466f4f&imgtype=0&data-original=http%3A%2F%2Fi2.hdslb.com%2Fbfs%2Fface%2Fea739ad37e888654fbcb746d6a9a40fb9609aa38.jpg" alt="">
+     <img class="image-item" lazyload="true" data-original="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1596604398480&di=ad0eb80ec1d14f2bf3aa6d1abfbb999b&imgtype=0&data-original=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201308%2F27%2F20130827044341_T3S4w.thumb.700_0.jpeg" alt="">
+     <img class="image-item" lazyload="true" data-original="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=862911338,2801093476&fm=26&gp=0.jpg" alt="">
+     <img class="image-item" lazyload="true" data-original="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1596604398478&di=2c41a1d6249858f1bafbb045850552bd&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fforum%2Fw%3D580%2Fsign%3Da0cd2ff1369b033b2c88fcd225cc3620%2F867555fbb2fb431619c5488f22a4462308f7d301.jpg" alt="">
+     <img class="image-item" lazyload="true" data-original="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1477845112,2750658804&fm=15&gp=0.jpg" alt="">
+     <img class="image-item" lazyload="true" data-original="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2508419689,4271564942&fm=26&gp=0.jpg" alt="">
+     <img class="image-item" lazyload="true" data-original="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1596604398474&di=713c0b23fd9a905b925e9ec706f664e9&imgtype=0&src=http%3A%2F%2Fimg08.oneniceapp.com%2Fupload%2Favatar%2F2015%2F03%2F23%2Fa315d4af36d4acb1122a7df4670d0607.jpg" alt="">
+     
+
+     <script>
+         // 可视区域的高度
+         let viewHeight = document.documentElement.clientHeight
+         console.log(viewHeight)
+         function lazyload() {
+             let eles = document.querySelectorAll('img[data-original]')
+             Array.prototype.forEach.call(eles)
+         }
+     </script>
+</body>
+</html>

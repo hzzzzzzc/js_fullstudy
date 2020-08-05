@@ -21,8 +21,9 @@
 // 自执行函数
 
 var a = 2;
-(function() {
+(function() {    // 函数表达式(function(){})()
     var a = 3
     console.log(a)
 })()
+
 console.log(a*2)
