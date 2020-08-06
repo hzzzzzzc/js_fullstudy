@@ -1,9 +1,14 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Lazyload</title>
+    <style>
+      .image-item {
+	    display: block;
+	    margin-bottom: 50px;
+	    height: 200px; 
+	}
+    </style>
 </head>
 <body>
      <img class="image-item" lazyload="true" data-original="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1596604398480&di=727adceb002e59d1391c141564466f4f&imgtype=0&data-original=http%3A%2F%2Fi2.hdslb.com%2Fbfs%2Fface%2Fea739ad37e888654fbcb746d6a9a40fb9609aa38.jpg" alt="">
@@ -14,15 +19,31 @@
      <img class="image-item" lazyload="true" data-original="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2508419689,4271564942&fm=26&gp=0.jpg" alt="">
      <img class="image-item" lazyload="true" data-original="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1596604398474&di=713c0b23fd9a905b925e9ec706f664e9&imgtype=0&src=http%3A%2F%2Fimg08.oneniceapp.com%2Fupload%2Favatar%2F2015%2F03%2F23%2Fa315d4af36d4acb1122a7df4670d0607.jpg" alt="">
      
-
      <script>
-         // 可视区域的高度
-         let viewHeight = document.documentElement.clientHeight
-         console.log(viewHeight)
-         function lazyload() {
-             let eles = document.querySelectorAll('img[data-original]')
-             Array.prototype.forEach.call(eles)
-         }
-     </script>
-</body>
-</html>
+        var viewHeight =document.documentElement.clientHeight//获取可视区高度
+        function lazyload(){
+        var eles=document.querySelectorAll('img[data-original][lazyload]')
+        Array.prototype.forEach.call(eles,function(item,index){
+        var rect
+        if(item.dataset.original==="")
+           return
+        rect=item.getBoundingClientRect()// 用于获得页面中某个元素的左，上，右和下分别相对浏览器视窗的位置
+        if(rect.bottom>=0 && rect.top < viewHeight){
+        !function(){
+          var img=new Image()
+          img.src=item.dataset.original
+          img.onload=function(){
+            item.src=img.src
+            }
+        item.removeAttribute("data-original")//移除属性，下次不再遍历
+        item.removeAttribute("lazyload")
+           }()
+          }
+         })
+        }
+        lazyload()//刚开始还没滚动屏幕时，要先触发一次函数，初始化首页的页面图片
+        document.addEventListener("scroll",lazyload)
+        </script>
+        </body>
+        </html>
+    
