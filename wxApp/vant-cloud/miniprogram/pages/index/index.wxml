@@ -1,0 +1,8 @@
+<!--miniprogram/pages/index/index.wxml-->
+<view class="container">
+	<view class="new-outer">
+		<view class="new-item" bindtap='showNewGroupModal'>
+		</view>
+	</view>
+</view>
+
