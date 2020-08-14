@@ -22,7 +22,6 @@ Page({
   },
   createGroup() {
     const self = this
-    console.log(123)
     if (this.data.groupName === '') {
       // 出现notify
       Notify({
@@ -34,7 +33,6 @@ Page({
       self.selectComponent("#new-group-modal").stopLoading()
       return
     }
-    
     // 调用云函数
     wx.cloud.callFunction({
       name: 'createGroup',
@@ -43,6 +41,22 @@ Page({
       },
       success(res) {
         console.log(res)
+        self.setData({
+          groupName: '',
+          newGroupModal: false
+        })
+        // 出现notify
+        Notify({
+          message: '新建成功',
+          duration: 2000,
+          selector: '#notify-selector',
+          background: '#28a745'
+        });
+        setTimeout(() => {
+          wx.switchTab({
+            url: '/pages/group/group'
+          })
+        }, 2000)
       },
       fail(error) {
         console.log(error)
