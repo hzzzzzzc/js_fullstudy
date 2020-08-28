@@ -2,113 +2,129 @@
   <div class="home">
     <div class="address">
       <div class="nav">
-        <p>{{localTime}}</p>
-        <span class="change-city">切换城市</span>       
-      </div>  
+        <span class="change-city">切换城市</span>
+        <p class="time">{{localTime}}</p>
+      </div>
       <div class="city-info">
-        <p class="city-name">南昌</p>
-        <p class="city-weather">晴</p>
-        <h1 class="city-temp">30°C</h1>
-        <p class="weahter-detail">
-          <span>风力3</span> |
-          <span>风向：西北</span>
-          <span>空气湿度：75%</span>
+        <p class="city-name">{{mapData.city}}</p>
+        <p class="city-weather">{{mapData.weather}}</p>
+        <h1 class="city-temp">{{mapData.temperature}}°C</h1>
+        <p class="weather-detail">
+          <span>风力:{{mapData.windPower}}</span> |
+          <span>风向:{{mapData.windDirection}}</span> |
+          <span>空气湿度:{{mapData.humidity}}</span>
         </p>
       </div>
     </div>
-    <div class="feature">
+    <div class="future">
       <div class="group">
-        明日：
-        <span class="tm">白天多云</span>
-        <span class="tm">夜间大雨</span>
+        明天:
+        <span class="tm">白天：多云</span>
+        <span class="tm">晚上：大雨</span>
       </div>
       <div class="group">
-         后天：
-        <span class="tm">白天多云</span>
-        <span class="tm">夜间大雨</span>
+        后天:
+        <span class="tm">白天：多云</span>
+        <span class="tm">晚上：大雨</span>
       </div>
     </div>
     <div class="map-container" ref="mapContainer"></div>
   </div>
 </template>
-
+<script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.15&key=c4772fbb2cb3ce0900ae36df7c9711f9"></script>
 <script>
 export default {
-data() {
-  return {
-    localTime: ''
-  }
-  
-},
-created() {
-  setInterval(() => {
-    this.localTime = this.getLocalTime()
-  })
-},
-mounted() {
-  console.log(this.$refs.mapContainer);
-  this.initMap()
-},
-
-methods: {
+  data() {
+    return {
+      localTime: "",
+      mapData: "",
+    };
+  },
+  created() {
+    setInterval(() => {
+      this.localTime = this.getLocalTime();
+    }, 1000);
+  },
+  mounted() {
+    console.log(this.$refs.mapContainer);
+    this.initMap();
+  },
+  methods: {
     getLocalTime() {
-      return new Date().toLocaleTimeString()
+      return new Date().toLocaleTimeString();
     },
     initMap() {
-      let _self = this
-      let map = new AMap.Map(_self.$refs.mapContainer, {
-        resizeEnable: true
+      let _self = this;
+      let map = AMap.Map("_self.$refs.mapContainer", {
+        resizeEnable: true,
       });
-      AMap.plugin('AMap.CitySearch', function() {
-        let citySearch = new AMap.CitySearch()
+      AMap.plugin("AMap.CitySearch", function () {
+        let citySearch = new AMap.CitySearch();
         // console.log(citySearch)
-        citySearch.getLocalCity(function(status, result){
-          if(status == 'complete' && result.info === 'ok'){
-            // 获取位置成功
+        citySearch.getLocalCity(function (status, result) {
+          if (status === "complete" && result.info === "OK") {
+            // 查询成功，result即为当前所在城市信息
+            console.log(result);
+            _self.getCurrentCityData(result.city);
           }
-        })
-      })
-    }
+        });
+      });
+    },
+    getCurrentCityData(cityName) {
+      let _self = this;
+      AMap.plugin("AMap.Weather", function () {
+        //创建天气查询实例
+        var weather = new AMap.Weather();
 
-  }
-}
+        //执行实时天气信息查询
+        weather.getLive(cityName, function (err, data) {
+          _self.mapData = data;
+        });
+      });
+    },
+  },
+};
 </script>
 
 <style scoped>
-.nav{
+.home {
+  padding: 10px;
+  height: 100vh;
+  box-sizing: border-box;
+  background: #838383;
+}
+
+.nav {
   display: flex;
   justify-content: space-between;
 }
-.home{
-  padding: 10px;
-  box-sizing: border-box;
-  height: 100vh;
-  background-color: black;
-  opacity: 0.7;
-  color: #fff;
-}
-.city-info{
+
+.city-info {
   text-align: center;
   margin: 20px 0;
   line-height: 2;
 }
-.city-temp{
+
+.city-temp {
   font-size: 40px;
 }
-.feature{
+
+.future {
   width: 100%;
 }
-.group{
+
+.future .group {
   height: 44px;
   line-height: 44px;
-  background-color: rgba(255,255,255,0.26);
+  background-color: #777777;
   border-radius: 4px;
-  color: #fff;
-  margin-bottom: 10px;
+  color: antiquewhite;
   font-size: 16px;
+  margin-bottom: 10px;
   padding: 0 10px;
 }
-.tm{
+
+.future .group .tm {
   margin-right: 20px;
 }
 </style>
