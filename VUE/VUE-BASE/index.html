@@ -6,6 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.12/vue.common.dev.js"></script>
     <title>Document</title>
+    <style>
+        .red{
+            color: red
+        }
+        [v-cloak]{
+            display: none;
+        }
+    </style>
 </head>
 
 <body>
@@ -24,6 +32,22 @@
             <button v-on:click="add">+</button>
             <button @click="reduce">-</button>
         </div>
+        <div class="model">
+            <p>{{word}}</p>
+            <p>v-model:
+                <input type="text" v-model="word" />
+            </p>
+        </div>
+        <div class="pic" >
+            <img :src="girl? imgSrc1 : imgSrc2" style="width: 500px;height: 500px;" @click="whoIsShe">
+        </div>
+        <div  v-on:click="isRed" :class="color? 'red': ''">
+            <span>明国很腼腆</span> 
+        </div>
+        <div v-pre>{{message}}</div>
+        <div v-cloak>{{message}}</div>
+        <div v-once>{{message}}</div>
+        <input type="text" v-model="message"/>
     </div>
 
     <script>
@@ -31,6 +55,11 @@
             el: '#app',
             data: {
                 message: 'hello world',
+                color: 'false',
+                girl: 'false',
+                word: '0.0',
+                imgSrc1: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1598262296989&di=49f2d2b49702444a20183c2d3999186a&imgtype=0&src=http%3A%2F%2Fi2.hdslb.com%2Fbfs%2Fface%2Fea739ad37e888654fbcb746d6a9a40fb9609aa38.jpg',
+                imgSrc2: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1598263223152&di=ff030ae5c5fbcbfc50046541c9f9f290&imgtype=0&src=http%3A%2F%2Fthumbnails102.imagebam.com%2F27892%2F33af55278918316.jpg',
                 newMessage: '<h2>hello vue</h2>',
                 isSure: false,
                 list: ['a', 'b', 'c', 'd'],
@@ -49,6 +78,12 @@
                 },
                 reduce() {
                     this.count--
+                },
+                isRed() {
+                    this.color = !this.color
+                },
+                whoIsShe() {
+                    this.girl = !this.girl
                 }
             },
 

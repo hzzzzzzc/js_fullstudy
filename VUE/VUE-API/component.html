@@ -7,6 +7,21 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <h1>component</h1>
+    <div id="app">
+        <wn></wn>
+    </div>
+
+    <script>
+        Vue.component('wn', {
+            template: `<div style="font-size: 20px">我是个组件</div>`
+        })
+        let app = new Vue({
+            el: '#app',
+            data: {
+
+            }
+        })
+    </script>
 </body>
 </html>

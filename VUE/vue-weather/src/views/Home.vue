@@ -2,42 +2,43 @@
   <div class="home">
     <div class="address">
       <div class="nav">
-        <span class="change-city">切换城市</span>
         <p class="time">{{localTime}}</p>
+        <span class="change-city">切换城市</span>
       </div>
       <div class="city-info">
         <p class="city-name">{{mapData.city}}</p>
         <p class="city-weather">{{mapData.weather}}</p>
-        <h1 class="city-temp">{{mapData.temperature}}°C</h1>
+        <h1 class="city-temp">{{mapData.temperature}}℃</h1>
         <p class="weather-detail">
-          <span>风力:{{mapData.windPower}}</span> |
-          <span>风向:{{mapData.windDirection}}</span> |
-          <span>空气湿度:{{mapData.humidity}}</span>
+          <span>风力：{{mapData.windPower}}</span> |
+          <span>风向：{{mapData.windDirection}}</span> |
+          <span>空气湿度：{{mapData.humidity}}%</span>
         </p>
       </div>
     </div>
-    <div class="future">
-      <div class="group">
-        明天:
-        <span class="tm">白天：多云</span>
-        <span class="tm">晚上：大雨</span>
+    <div class="feature">
+      <div class="group" v-if="mapFeatureMapData.length > 0">
+        明日:
+        <span class="tm">白天:{{mapFeatureMapData[1].dayTemp}} {{mapFeatureMapData[1].dayWeather}} {{mapFeatureMapData[1].dayWindDir}} {{mapFeatureMapData[1].dayWindPower}}</span>
+        <span class="tm">夜间:大雨</span>
       </div>
       <div class="group">
         后天:
-        <span class="tm">白天：多云</span>
-        <span class="tm">晚上：大雨</span>
+        <span class="tm">白天:多云</span>
+        <span class="tm">夜间:大雨</span>
       </div>
     </div>
     <div class="map-container" ref="mapContainer"></div>
   </div>
 </template>
-<script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.15&key=c4772fbb2cb3ce0900ae36df7c9711f9"></script>
+
 <script>
 export default {
   data() {
     return {
       localTime: "",
-      mapData: "",
+      mapData: {},
+      mapFeatureMapData: []
     };
   },
   created() {
@@ -46,7 +47,7 @@ export default {
     }, 1000);
   },
   mounted() {
-    console.log(this.$refs.mapContainer);
+    // console.log(this.$refs.mapContainer)
     this.initMap();
   },
   methods: {
@@ -55,7 +56,7 @@ export default {
     },
     initMap() {
       let _self = this;
-      let map = AMap.Map("_self.$refs.mapContainer", {
+      let map = new AMap.Map(_self.$refs.mapContainer, {
         resizeEnable: true,
       });
       AMap.plugin("AMap.CitySearch", function () {
@@ -63,8 +64,7 @@ export default {
         // console.log(citySearch)
         citySearch.getLocalCity(function (status, result) {
           if (status === "complete" && result.info === "OK") {
-            // 查询成功，result即为当前所在城市信息
-            console.log(result);
+            // 获取位置成功
             _self.getCurrentCityData(result.city);
           }
         });
@@ -78,9 +78,15 @@ export default {
 
         //执行实时天气信息查询
         weather.getLive(cityName, function (err, data) {
-          _self.mapData = data;
+          // console.log(err, data);
+          _self.mapData = data
         });
-      });
+        //执行未来天气信息查询
+        weather.getForecast(cityName, function (err, data) {
+          // console.log(data)
+          _self.mapFeatureMapData = data.forecasts
+        })
+      })
     },
   },
 };
@@ -91,40 +97,36 @@ export default {
   padding: 10px;
   height: 100vh;
   box-sizing: border-box;
-  background: #838383;
+  background: #000;
+  opacity: 0.7;
+  color: #fff;
 }
-
 .nav {
   display: flex;
   justify-content: space-between;
 }
-
 .city-info {
   text-align: center;
   margin: 20px 0;
   line-height: 2;
 }
-
 .city-temp {
   font-size: 40px;
 }
-
-.future {
+.feature {
   width: 100%;
 }
-
-.future .group {
+.feature .group {
   height: 44px;
   line-height: 44px;
-  background-color: #777777;
+  background-color: rgba(255, 255, 255, 0.26);
   border-radius: 4px;
-  color: antiquewhite;
+  color: #fff;
   font-size: 16px;
   margin-bottom: 10px;
   padding: 0 10px;
 }
-
-.future .group .tm {
+.group .tm {
   margin-right: 20px;
 }
 </style>

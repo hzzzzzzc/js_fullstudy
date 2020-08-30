@@ -1,6 +1,7 @@
 <template>
   <div class="hi">
-    w s hi1 yemian
+    000000000
+    <!-- {{route.params.name}} -->
   </div>
 </template>
 
