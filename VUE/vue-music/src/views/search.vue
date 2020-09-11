@@ -1,16 +1,25 @@
 <template>
   <div class="search">
       <div class="search-box-wrapper">
-          <v-search-box></v-search-box>
+          <v-search-box @query="onQueryChange"></v-search-box>
+      </div>
+      <div class="shortcut-wrapper" ref="shortcutWrapper">
+        <v-scroll></v-scroll>
       </div>
   </div>
 </template>
 
 <script>
 import searchBox from '@/components/searchBox'
+import {searchMixin} from '@/common/js/mixin'
+import scroll from '@/components/scroll'
 export default {
     components:{
         'v-search-box': searchBox
+    },
+    mixins: [searchMixin],
+    methods: {
+
     }
 }
 </script>
